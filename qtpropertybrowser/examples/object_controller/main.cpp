@@ -12,11 +12,12 @@
 #include <QBoxLayout>
 #include <QTreeWidget>
 #include <QAction>
-#include <QDesktopWidget>
+//#include <QDesktopWidget>
 #include <QTextDocument>
 #include <QCalendarWidget>
 #include <QTimeLine>
 #include "objectcontroller.h"
+#include <QScreen>
 
 class MyController : public QDialog
 {
@@ -103,7 +104,7 @@ void MyController::createAndControl()
         r.setSize(newWidget->sizeHint());
         r.setWidth(qMax(r.width(), 150));
         r.setHeight(qMax(r.height(), 50));
-        r.moveCenter(QApplication::desktop()->geometry().center());
+        r.moveCenter(QApplication::primaryScreen()->availableGeometry().center());
         newWidget->setGeometry(r);
         newWidget->setWindowTitle(tr("Controlled Object: %1").arg(className));
         newWidget->show();
